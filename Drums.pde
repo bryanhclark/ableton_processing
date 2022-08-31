@@ -17,12 +17,8 @@ class DrumRect {
   }
 
   void show(float velocity) {
-    println("velocity: "+velocity);
     isOn = true;
-    float a = velocity / 127;
-    println("a: "+a);
-    rectHeight = a * height;
-    println("rectHeight: "+rectHeight);
+    rectHeight = (velocity / 127) * height;
   }
 
   void hide() {
@@ -32,11 +28,11 @@ class DrumRect {
 
 void initDrums() {
   for(int i = 0; i < NUM_DRUMS; i = i + 1) {
-    float a = (float)i/NUM_DRUMS;
-    int xInit = floor(a * width);
+    float drumPosition = (float)i/NUM_DRUMS;
+    int xInit = floor(drumPosition * width);
     int wInit = floor(width / NUM_DRUMS);
     int[] rgbInit = { 255, 100, 10 };
-    boolean isOnInit = true;
+    boolean isOnInit = false;
     DrumRect drum = new DrumRect(xInit, wInit,rgbInit, isOnInit);
     DRUM_NOTES.add(drum);
   }
